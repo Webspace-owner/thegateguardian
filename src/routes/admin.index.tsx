@@ -8,14 +8,14 @@ export const Route = createFileRoute("/admin/")({
   component: Dashboard,
 });
 
-function useCount(table: string, filter?: { column: string; value: any }) {
+function useCount(table: any, filter?: { column: string; value: any }) {
   return useQuery({
     queryKey: ["count", table, filter],
     queryFn: async () => {
-      let q = supabase.from(table).select("*", { count: "exact", head: true });
+      let q: any = supabase.from(table).select("*", { count: "exact", head: true });
       if (filter) q = q.eq(filter.column, filter.value);
       const { count } = await q;
-      return count ?? 0;
+      return (count ?? 0) as number;
     },
   });
 }
