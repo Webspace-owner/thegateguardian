@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { ShieldCheck, Mail, Phone, MapPin, ArrowUpRight, Linkedin, Twitter, Facebook } from "lucide-react";
 
-export function Footer({ settings }: { settings?: { phone?: string; contact_email?: string; address?: string | null; whatsapp?: string } }) {
+export function Footer({ settings }: { settings?: { phone?: string; contact_email?: string; address?: string | null; whatsapp?: string; logo_url?: string | null } }) {
   return (
     <footer className="relative mt-32 overflow-hidden">
       <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary/40 to-transparent" />
@@ -28,10 +28,16 @@ export function Footer({ settings }: { settings?: { phone?: string; contact_emai
         <div className="grid gap-10 md:grid-cols-12">
           <div className="md:col-span-5">
             <Link to="/" className="flex items-center gap-2.5 mb-5">
-              <div className="h-9 w-9 rounded-xl bg-gradient-gold flex items-center justify-center">
-                <ShieldCheck className="h-5 w-5 text-primary-foreground" />
-              </div>
-              <span className="font-display font-bold text-lg">Gate <span className="text-gradient-gold">Guardian</span></span>
+              {settings?.logo_url ? (
+                <img src={settings.logo_url} alt="The Gate Guardian" className="h-10 w-auto object-contain" />
+              ) : (
+                <>
+                  <div className="h-9 w-9 rounded-xl bg-gradient-gold flex items-center justify-center">
+                    <ShieldCheck className="h-5 w-5 text-primary-foreground" />
+                  </div>
+                  <span className="font-display font-bold text-lg">Gate <span className="text-gradient-gold">Guardian</span></span>
+                </>
+              )}
             </Link>
             <p className="text-sm text-muted-foreground max-w-md leading-relaxed">
               Strategic consulting, training, and end-to-end project delivery for security and infrastructure programs across the world's most demanding industries.

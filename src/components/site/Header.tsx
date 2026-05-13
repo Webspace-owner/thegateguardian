@@ -12,7 +12,7 @@ const nav = [
   { to: "/contact", label: "Contact" },
 ] as const;
 
-export function Header({ phone }: { phone?: string; whatsapp?: string }) {
+export function Header({ phone, logoUrl }: { phone?: string; whatsapp?: string; logoUrl?: string | null }) {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -27,15 +27,21 @@ export function Header({ phone }: { phone?: string; whatsapp?: string }) {
     <header className={`sticky top-0 z-50 transition-all duration-300 ${scrolled ? "glass-strong" : "bg-transparent"}`}>
       <div className="container mx-auto flex h-20 items-center justify-between px-4">
         <Link to="/" className="flex items-center gap-2.5 group">
-          <div className="relative">
-            <div className="absolute inset-0 bg-gradient-gold blur-md opacity-60 group-hover:opacity-100 transition" />
-            <div className="relative h-9 w-9 rounded-xl bg-gradient-gold flex items-center justify-center">
-              <ShieldCheck className="h-5 w-5 text-primary-foreground" />
-            </div>
-          </div>
-          <span className="font-display font-bold text-lg tracking-tight">
-            Gate <span className="text-gradient-gold">Guardian</span>
-          </span>
+          {logoUrl ? (
+            <img src={logoUrl} alt="The Gate Guardian" className="h-10 w-auto object-contain" />
+          ) : (
+            <>
+              <div className="relative">
+                <div className="absolute inset-0 bg-gradient-gold blur-md opacity-60 group-hover:opacity-100 transition" />
+                <div className="relative h-9 w-9 rounded-xl bg-gradient-gold flex items-center justify-center">
+                  <ShieldCheck className="h-5 w-5 text-primary-foreground" />
+                </div>
+              </div>
+              <span className="font-display font-bold text-lg tracking-tight">
+                Gate <span className="text-gradient-gold">Guardian</span>
+              </span>
+            </>
+          )}
         </Link>
 
         <nav className="hidden lg:flex items-center gap-1 glass rounded-full px-2 py-1.5">

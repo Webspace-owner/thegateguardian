@@ -17,7 +17,7 @@ export function SiteLayout({ children }: { children: React.ReactNode }) {
 
   return (
     <div className="min-h-screen flex flex-col">
-      <Header phone={settings?.phone} whatsapp={settings?.whatsapp} />
+      <Header phone={settings?.phone} whatsapp={settings?.whatsapp} logoUrl={settings?.logo_url} />
       <main className="flex-1">{children}</main>
       <Footer settings={settings ?? undefined} />
       {wa && (
