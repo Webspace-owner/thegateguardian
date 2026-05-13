@@ -49,13 +49,13 @@
   --card-foreground: oklch(0.97 0.012 90);
   --popover: oklch(0.17 0.022 280);
   --popover-foreground: oklch(0.97 0.012 90);
-  --primary: oklch(0.82 0.14 85);             /* champagne gold */
-  --primary-foreground: oklch(0.13 0.018 280);
-  --secondary: oklch(0.22 0.03 280);
-  --secondary-foreground: oklch(0.97 0.012 90);
-  --muted: oklch(0.20 0.025 280);
-  --muted-foreground: oklch(0.72 0.02 280);
-  --accent: oklch(0.62 0.22 305);              /* electric violet */
+  --primary: oklch(0.62 0.18 145);             /* gate guardian green */
+  --primary-foreground: oklch(0.98 0.01 145);
+  --secondary: oklch(0.22 0.03 160);
+  --secondary-foreground: oklch(0.97 0.012 145);
+  --muted: oklch(0.20 0.025 160);
+  --muted-foreground: oklch(0.72 0.02 160);
+  --accent: oklch(0.72 0.20 145);              /* bright accent green */
   --accent-foreground: oklch(0.97 0.012 90);
   --destructive: oklch(0.62 0.22 25);
   --destructive-foreground: oklch(0.97 0.012 90);
