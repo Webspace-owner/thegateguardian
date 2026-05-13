@@ -12,7 +12,7 @@ const nav = [
   { to: "/contact", label: "Contact" },
 ] as const;
 
-export function Header({ phone }: { phone?: string; whatsapp?: string }) {
+export function Header({ phone, logoUrl }: { phone?: string; whatsapp?: string; logoUrl?: string | null }) {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
