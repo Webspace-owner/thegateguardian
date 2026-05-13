@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { ShieldCheck, Mail, Phone, MapPin, ArrowUpRight, Linkedin, Twitter, Facebook } from "lucide-react";
 
-export function Footer({ settings }: { settings?: { phone?: string; contact_email?: string; address?: string | null; whatsapp?: string } }) {
+export function Footer({ settings }: { settings?: { phone?: string; contact_email?: string; address?: string | null; whatsapp?: string; logo_url?: string | null } }) {
   return (
     <footer className="relative mt-32 overflow-hidden">
       <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary/40 to-transparent" />
