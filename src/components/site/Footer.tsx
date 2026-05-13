@@ -28,10 +28,16 @@ export function Footer({ settings }: { settings?: { phone?: string; contact_emai
         <div className="grid gap-10 md:grid-cols-12">
           <div className="md:col-span-5">
             <Link to="/" className="flex items-center gap-2.5 mb-5">
-              <div className="h-9 w-9 rounded-xl bg-gradient-gold flex items-center justify-center">
-                <ShieldCheck className="h-5 w-5 text-primary-foreground" />
-              </div>
-              <span className="font-display font-bold text-lg">Gate <span className="text-gradient-gold">Guardian</span></span>
+              {settings?.logo_url ? (
+                <img src={settings.logo_url} alt="The Gate Guardian" className="h-10 w-auto object-contain" />
+              ) : (
+                <>
+                  <div className="h-9 w-9 rounded-xl bg-gradient-gold flex items-center justify-center">
+                    <ShieldCheck className="h-5 w-5 text-primary-foreground" />
+                  </div>
+                  <span className="font-display font-bold text-lg">Gate <span className="text-gradient-gold">Guardian</span></span>
+                </>
+              )}
             </Link>
             <p className="text-sm text-muted-foreground max-w-md leading-relaxed">
               Strategic consulting, training, and end-to-end project delivery for security and infrastructure programs across the world's most demanding industries.
