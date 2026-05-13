@@ -42,13 +42,13 @@
 
 :root {
   --radius: 1rem;
-  /* Midnight obsidian + champagne gold + electric violet */
-  --background: oklch(0.13 0.018 280);
-  --foreground: oklch(0.97 0.012 90);
-  --card: oklch(0.17 0.022 280);
-  --card-foreground: oklch(0.97 0.012 90);
-  --popover: oklch(0.17 0.022 280);
-  --popover-foreground: oklch(0.97 0.012 90);
+  /* Deep emerald + gate guardian green */
+  --background: oklch(0.13 0.018 160);
+  --foreground: oklch(0.97 0.012 145);
+  --card: oklch(0.17 0.022 160);
+  --card-foreground: oklch(0.97 0.012 145);
+  --popover: oklch(0.17 0.022 160);
+  --popover-foreground: oklch(0.97 0.012 145);
   --primary: oklch(0.62 0.18 145);             /* gate guardian green */
   --primary-foreground: oklch(0.98 0.01 145);
   --secondary: oklch(0.22 0.03 160);
