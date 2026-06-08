@@ -199,7 +199,12 @@ function Index() {
             {industries?.map((ind, i) => {
               const I = (Icons as any)[ind.icon ? ind.icon.split("-").map((s: string) => s[0].toUpperCase() + s.slice(1)).join("") : "Building"] || Icons.Building;
               return (
-                <div key={ind.id} className="group relative glass rounded-2xl p-6 hover:border-primary/40 transition-all duration-500 hover:-translate-y-1 overflow-hidden">
+                <Link
+                  key={ind.id}
+                  to="/industries/$slug"
+                  params={{ slug: (ind as any).slug ?? "" }}
+                  className="group relative glass rounded-2xl p-6 hover:border-primary/40 transition-all duration-500 hover:-translate-y-1 overflow-hidden"
+                >
                   <div className="absolute -top-10 -right-10 h-32 w-32 bg-gradient-gold opacity-0 group-hover:opacity-20 blur-2xl transition" />
                   <div className="relative">
                     <div className="text-[10px] font-mono text-primary/60 mb-3">0{i + 1}</div>
@@ -207,9 +212,10 @@ function Index() {
                     <div className="font-display font-bold uppercase tracking-wide text-sm">{ind.name}</div>
                     <ArrowUpRight className="absolute top-0 right-0 h-4 w-4 text-muted-foreground opacity-0 group-hover:opacity-100 transition" />
                   </div>
-                </div>
+                </Link>
               );
             })}
+
           </div>
         </div>
       </section>
