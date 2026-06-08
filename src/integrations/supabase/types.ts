@@ -112,25 +112,46 @@ export type Database = {
       }
       industries: {
         Row: {
+          challenges: string | null
           created_at: string
           icon: string | null
           id: string
+          image_url: string | null
           name: string
+          overview: string | null
+          services: string | null
+          slug: string | null
+          solutions: string | null
           sort_order: number
+          tagline: string | null
         }
         Insert: {
+          challenges?: string | null
           created_at?: string
           icon?: string | null
           id?: string
+          image_url?: string | null
           name: string
+          overview?: string | null
+          services?: string | null
+          slug?: string | null
+          solutions?: string | null
           sort_order?: number
+          tagline?: string | null
         }
         Update: {
+          challenges?: string | null
           created_at?: string
           icon?: string | null
           id?: string
+          image_url?: string | null
           name?: string
+          overview?: string | null
+          services?: string | null
+          slug?: string | null
+          solutions?: string | null
           sort_order?: number
+          tagline?: string | null
         }
         Relationships: []
       }
