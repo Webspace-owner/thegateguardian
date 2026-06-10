@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { solutions } from "@/lib/solutions";
 
-const nav = [
+const nav: ReadonlyArray<{ to: string; label: string; hasDropdown?: boolean }> = [
   { to: "/", label: "Home" },
   { to: "/about", label: "About" },
   { to: "/solutions", label: "Our Solutions", hasDropdown: true },
@@ -12,7 +12,7 @@ const nav = [
   { to: "/gallery", label: "Projects" },
   { to: "/blog", label: "Insights" },
   { to: "/contact", label: "Contact" },
-] as const;
+];
 
 export function Header({ phone, logoUrl }: { phone?: string; whatsapp?: string; logoUrl?: string | null }) {
   const [open, setOpen] = useState(false);
