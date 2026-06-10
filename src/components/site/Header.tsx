@@ -1,17 +1,18 @@
 import { Link } from "@tanstack/react-router";
-import { ShieldCheck, Menu, X, Phone, ArrowUpRight } from "lucide-react";
+import { ShieldCheck, Menu, X, Phone, ArrowUpRight, ChevronDown } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
+import { solutions } from "@/lib/solutions";
 
-const nav = [
+const nav: ReadonlyArray<{ to: string; label: string; hasDropdown?: boolean }> = [
   { to: "/", label: "Home" },
   { to: "/about", label: "About" },
-  { to: "/services", label: "Solutions" },
+  { to: "/solutions", label: "Our Solutions", hasDropdown: true },
   { to: "/industries", label: "Industries" },
   { to: "/gallery", label: "Projects" },
   { to: "/blog", label: "Insights" },
   { to: "/contact", label: "Contact" },
-] as const;
+];
 
 export function Header({ phone, logoUrl }: { phone?: string; whatsapp?: string; logoUrl?: string | null }) {
   const [open, setOpen] = useState(false);
@@ -46,17 +47,49 @@ export function Header({ phone, logoUrl }: { phone?: string; whatsapp?: string; 
         </Link>
 
         <nav className="hidden lg:flex items-center gap-1 glass rounded-full px-2 py-1.5">
-          {nav.map((n) => (
-            <Link
-              key={n.to}
-              to={n.to}
-              className="text-sm px-4 py-1.5 rounded-full text-muted-foreground hover:text-foreground hover:bg-foreground/5 transition"
-              activeProps={{ className: "text-primary-foreground bg-gradient-gold !hover:bg-gradient-gold" }}
-              activeOptions={{ exact: n.to === "/" }}
-            >
-              {n.label}
-            </Link>
-          ))}
+          {nav.map((n) => {
+            if (n.hasDropdown) {
+              return (
+                <div key={n.to} className="relative group">
+                  <Link
+                    to={n.to}
+                    className="text-sm px-4 py-1.5 rounded-full text-muted-foreground hover:text-foreground hover:bg-foreground/5 transition flex items-center gap-1"
+                    activeProps={{ className: "text-primary-foreground bg-gradient-gold" }}
+                  >
+                    {n.label} <ChevronDown className="h-3 w-3" />
+                  </Link>
+                  <div className="absolute left-1/2 -translate-x-1/2 top-full pt-3 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition">
+                    <div className="glass-strong rounded-2xl p-2 min-w-[260px] border border-border/40 shadow-xl">
+                      <Link to="/solutions" className="block px-3 py-2 rounded-lg text-sm font-semibold hover:bg-foreground/5">All Solutions</Link>
+                      <div className="h-px bg-border/40 my-1" />
+                      {solutions.map((s) => (
+                        <Link
+                          key={s.slug}
+                          to="/solutions/$slug"
+                          params={{ slug: s.slug }}
+                          className="block px-3 py-2 rounded-lg text-sm hover:bg-foreground/5"
+                        >
+                          <div className="font-medium">{s.title}</div>
+                          <div className="text-xs text-muted-foreground">{s.tagline}</div>
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              );
+            }
+            return (
+              <Link
+                key={n.to}
+                to={n.to}
+                className="text-sm px-4 py-1.5 rounded-full text-muted-foreground hover:text-foreground hover:bg-foreground/5 transition"
+                activeProps={{ className: "text-primary-foreground bg-gradient-gold !hover:bg-gradient-gold" }}
+                activeOptions={{ exact: n.to === "/" }}
+              >
+                {n.label}
+              </Link>
+            );
+          })}
         </nav>
 
         <div className="hidden lg:flex items-center gap-3">
@@ -78,9 +111,26 @@ export function Header({ phone, logoUrl }: { phone?: string; whatsapp?: string; 
       {open && (
         <div className="lg:hidden glass-strong border-t border-border/30 px-4 py-4 space-y-1 animate-fade-in">
           {nav.map((n) => (
-            <Link key={n.to} to={n.to} onClick={() => setOpen(false)} className="block px-3 py-2.5 rounded-lg hover:bg-foreground/5 text-sm">
-              {n.label}
-            </Link>
+            <div key={n.to}>
+              <Link to={n.to} onClick={() => setOpen(false)} className="block px-3 py-2.5 rounded-lg hover:bg-foreground/5 text-sm">
+                {n.label}
+              </Link>
+              {n.hasDropdown && (
+                <div className="pl-4 space-y-1">
+                  {solutions.map((s) => (
+                    <Link
+                      key={s.slug}
+                      to="/solutions/$slug"
+                      params={{ slug: s.slug }}
+                      onClick={() => setOpen(false)}
+                      className="block px-3 py-2 rounded-lg hover:bg-foreground/5 text-xs text-muted-foreground"
+                    >
+                      {s.title}
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
           ))}
           <Link to="/contact" onClick={() => setOpen(false)} className="block pt-2">
             <Button className="w-full bg-gradient-gold text-primary-foreground rounded-full">Get Started</Button>
