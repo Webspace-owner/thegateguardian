@@ -233,7 +233,35 @@ function Index() {
         </section>
       )}
 
-      {/* FINAL CTA */}
+      {/* PARTNERS */}
+      <section className="container mx-auto px-4 py-24">
+        <div className="text-center mb-12">
+          <div className="inline-flex items-center gap-3 text-sm uppercase tracking-[0.3em] text-primary font-semibold mb-4">
+            <span className="h-px w-8 bg-primary" /> Sample of Our Partners <span className="h-px w-8 bg-primary" />
+          </div>
+          <h2 className="font-display text-3xl md:text-4xl font-bold">Trusted Technology Alliances</h2>
+        </div>
+        <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-3">
+          {[
+            "Cisco","Diebold Nixdorf","Oracle","Microsoft","Micro Focus","VMware","Kony","UiPath",
+            "Forcepoint","Symantec","HID","Extron","ParkHelp","SAS","F5","Dell Technologies",
+            "Palo Alto","Citrix","Commvault","Genesys","Schneider Electric","GE","Vertiv","Barco",
+            "Crestron","Akamai","Veritas","Veeam","Riverbed","Arbor","Leviton","FireMon",
+            "Nominum","AppDynamics","Infoblox","Kaspersky","FireEye","Tenable","Fortinet","Gigamon",
+            "Ixia","Sandvine","Sharp","NPT","Splunk","StealthBits","McAfee","Fiorano",
+            "VBrick","SEDCO","Quest","Infor","Incorta","OpenText","SailPoint",
+          ].map((name) => (
+            <div
+              key={name}
+              className="aspect-[3/2] glass rounded-xl flex items-center justify-center px-2 text-center text-xs md:text-sm font-semibold text-foreground/80 hover:text-primary hover:border-primary/40 transition-colors"
+            >
+              {name}
+            </div>
+          ))}
+        </div>
+      </section>
+
+
       <section className="container mx-auto px-4 pb-24">
         <div className="relative rounded-[2rem] overflow-hidden p-12 md:p-20 text-center glass">
           <Sparkles className="h-10 w-10 text-primary mx-auto mb-6" />
