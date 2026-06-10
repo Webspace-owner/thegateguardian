@@ -43,7 +43,8 @@ export const Route = createFileRoute("/solutions/$slug")({
 });
 
 function SolutionPage() {
-  const { solution: s } = Route.useLoaderData();
+  const { slug } = Route.useParams();
+  const s = getSolution(slug)!;
   const Icon = s.icon;
   const others = solutions.filter((o) => o.slug !== s.slug);
 
