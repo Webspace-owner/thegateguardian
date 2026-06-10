@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as SolutionsRouteImport } from './routes/solutions'
 import { Route as ServicesRouteImport } from './routes/services'
 import { Route as IndustriesRouteImport } from './routes/industries'
 import { Route as GalleryRouteImport } from './routes/gallery'
@@ -19,6 +20,7 @@ import { Route as AdminRouteImport } from './routes/admin'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AdminIndexRouteImport } from './routes/admin.index'
+import { Route as SolutionsSlugRouteImport } from './routes/solutions.$slug'
 import { Route as IndustriesSlugRouteImport } from './routes/industries.$slug'
 import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
 import { Route as AdminUsersRouteImport } from './routes/admin.users'
@@ -30,6 +32,11 @@ import { Route as AdminIndustriesRouteImport } from './routes/admin.industries'
 import { Route as AdminGalleryRouteImport } from './routes/admin.gallery'
 import { Route as AdminBlogRouteImport } from './routes/admin.blog'
 
+const SolutionsRoute = SolutionsRouteImport.update({
+  id: '/solutions',
+  path: '/solutions',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ServicesRoute = ServicesRouteImport.update({
   id: '/services',
   path: '/services',
@@ -79,6 +86,11 @@ const AdminIndexRoute = AdminIndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => AdminRoute,
+} as any)
+const SolutionsSlugRoute = SolutionsSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => SolutionsRoute,
 } as any)
 const IndustriesSlugRoute = IndustriesSlugRouteImport.update({
   id: '/$slug',
@@ -141,6 +153,7 @@ export interface FileRoutesByFullPath {
   '/gallery': typeof GalleryRoute
   '/industries': typeof IndustriesRouteWithChildren
   '/services': typeof ServicesRoute
+  '/solutions': typeof SolutionsRouteWithChildren
   '/admin/blog': typeof AdminBlogRoute
   '/admin/gallery': typeof AdminGalleryRoute
   '/admin/industries': typeof AdminIndustriesRoute
@@ -151,6 +164,7 @@ export interface FileRoutesByFullPath {
   '/admin/users': typeof AdminUsersRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/industries/$slug': typeof IndustriesSlugRoute
+  '/solutions/$slug': typeof SolutionsSlugRoute
   '/admin/': typeof AdminIndexRoute
 }
 export interface FileRoutesByTo {
@@ -162,6 +176,7 @@ export interface FileRoutesByTo {
   '/gallery': typeof GalleryRoute
   '/industries': typeof IndustriesRouteWithChildren
   '/services': typeof ServicesRoute
+  '/solutions': typeof SolutionsRouteWithChildren
   '/admin/blog': typeof AdminBlogRoute
   '/admin/gallery': typeof AdminGalleryRoute
   '/admin/industries': typeof AdminIndustriesRoute
@@ -172,6 +187,7 @@ export interface FileRoutesByTo {
   '/admin/users': typeof AdminUsersRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/industries/$slug': typeof IndustriesSlugRoute
+  '/solutions/$slug': typeof SolutionsSlugRoute
   '/admin': typeof AdminIndexRoute
 }
 export interface FileRoutesById {
@@ -185,6 +201,7 @@ export interface FileRoutesById {
   '/gallery': typeof GalleryRoute
   '/industries': typeof IndustriesRouteWithChildren
   '/services': typeof ServicesRoute
+  '/solutions': typeof SolutionsRouteWithChildren
   '/admin/blog': typeof AdminBlogRoute
   '/admin/gallery': typeof AdminGalleryRoute
   '/admin/industries': typeof AdminIndustriesRoute
@@ -195,6 +212,7 @@ export interface FileRoutesById {
   '/admin/users': typeof AdminUsersRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/industries/$slug': typeof IndustriesSlugRoute
+  '/solutions/$slug': typeof SolutionsSlugRoute
   '/admin/': typeof AdminIndexRoute
 }
 export interface FileRouteTypes {
@@ -209,6 +227,7 @@ export interface FileRouteTypes {
     | '/gallery'
     | '/industries'
     | '/services'
+    | '/solutions'
     | '/admin/blog'
     | '/admin/gallery'
     | '/admin/industries'
@@ -219,6 +238,7 @@ export interface FileRouteTypes {
     | '/admin/users'
     | '/blog/$slug'
     | '/industries/$slug'
+    | '/solutions/$slug'
     | '/admin/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -230,6 +250,7 @@ export interface FileRouteTypes {
     | '/gallery'
     | '/industries'
     | '/services'
+    | '/solutions'
     | '/admin/blog'
     | '/admin/gallery'
     | '/admin/industries'
@@ -240,6 +261,7 @@ export interface FileRouteTypes {
     | '/admin/users'
     | '/blog/$slug'
     | '/industries/$slug'
+    | '/solutions/$slug'
     | '/admin'
   id:
     | '__root__'
@@ -252,6 +274,7 @@ export interface FileRouteTypes {
     | '/gallery'
     | '/industries'
     | '/services'
+    | '/solutions'
     | '/admin/blog'
     | '/admin/gallery'
     | '/admin/industries'
@@ -262,6 +285,7 @@ export interface FileRouteTypes {
     | '/admin/users'
     | '/blog/$slug'
     | '/industries/$slug'
+    | '/solutions/$slug'
     | '/admin/'
   fileRoutesById: FileRoutesById
 }
@@ -275,10 +299,18 @@ export interface RootRouteChildren {
   GalleryRoute: typeof GalleryRoute
   IndustriesRoute: typeof IndustriesRouteWithChildren
   ServicesRoute: typeof ServicesRoute
+  SolutionsRoute: typeof SolutionsRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/solutions': {
+      id: '/solutions'
+      path: '/solutions'
+      fullPath: '/solutions'
+      preLoaderRoute: typeof SolutionsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/services': {
       id: '/services'
       path: '/services'
@@ -348,6 +380,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/admin/'
       preLoaderRoute: typeof AdminIndexRouteImport
       parentRoute: typeof AdminRoute
+    }
+    '/solutions/$slug': {
+      id: '/solutions/$slug'
+      path: '/$slug'
+      fullPath: '/solutions/$slug'
+      preLoaderRoute: typeof SolutionsSlugRouteImport
+      parentRoute: typeof SolutionsRoute
     }
     '/industries/$slug': {
       id: '/industries/$slug'
@@ -470,6 +509,18 @@ const IndustriesRouteWithChildren = IndustriesRoute._addFileChildren(
   IndustriesRouteChildren,
 )
 
+interface SolutionsRouteChildren {
+  SolutionsSlugRoute: typeof SolutionsSlugRoute
+}
+
+const SolutionsRouteChildren: SolutionsRouteChildren = {
+  SolutionsSlugRoute: SolutionsSlugRoute,
+}
+
+const SolutionsRouteWithChildren = SolutionsRoute._addFileChildren(
+  SolutionsRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
@@ -480,7 +531,18 @@ const rootRouteChildren: RootRouteChildren = {
   GalleryRoute: GalleryRoute,
   IndustriesRoute: IndustriesRouteWithChildren,
   ServicesRoute: ServicesRoute,
+  SolutionsRoute: SolutionsRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
