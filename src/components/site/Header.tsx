@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { ShieldCheck, Menu, X, Phone, ArrowUpRight, ChevronDown } from "lucide-react";
+import { ShieldCheck, Menu, X, ArrowUpRight, ChevronDown } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { solutions } from "@/lib/solutions";
@@ -14,7 +14,7 @@ const nav: ReadonlyArray<{ to: string; label: string; hasDropdown?: boolean }> =
   { to: "/contact", label: "Contact" },
 ];
 
-export function Header({ phone, logoUrl }: { phone?: string; whatsapp?: string; logoUrl?: string | null }) {
+export function Header({ logoUrl }: { logoUrl?: string | null }) {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -93,11 +93,6 @@ export function Header({ phone, logoUrl }: { phone?: string; whatsapp?: string; 
         </nav>
 
         <div className="hidden lg:flex items-center gap-3">
-          {phone && (
-            <a href={`tel:${phone}`} className="text-sm text-muted-foreground hover:text-primary flex items-center gap-1.5">
-              <Phone className="h-4 w-4" /> {phone}
-            </a>
-          )}
           <Button asChild size="sm" className="bg-gradient-gold text-primary-foreground hover:opacity-90 rounded-full font-semibold shadow-glow">
             <Link to="/contact">Get Started <ArrowUpRight className="ml-1 h-4 w-4" /></Link>
           </Button>
