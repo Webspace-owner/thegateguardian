@@ -1,7 +1,7 @@
 import { createFileRoute, Link, Outlet, useRouterState, useNavigate } from "@tanstack/react-router";
 import { useAuth } from "@/hooks/use-auth";
 import { Button } from "@/components/ui/button";
-import { Shield, LayoutDashboard, Settings, Inbox, Image, MessageSquare, FileText, Building2, ListOrdered, Users, LogOut } from "lucide-react";
+import { Shield, LayoutDashboard, Settings, Inbox, Image, MessageSquare, FileText, Building2, ListOrdered, Users, LogOut, Layers, Search } from "lucide-react";
 import { Sidebar, SidebarContent, SidebarGroup, SidebarGroupContent, SidebarMenu, SidebarMenuButton, SidebarMenuItem, SidebarProvider, SidebarTrigger, useSidebar } from "@/components/ui/sidebar";
 
 export const Route = createFileRoute("/admin")({
@@ -10,6 +10,8 @@ export const Route = createFileRoute("/admin")({
 
 const items = [
   { to: "/admin", label: "Dashboard", icon: LayoutDashboard, exact: true },
+  { to: "/admin/pages", label: "Pages (Builder)", icon: Layers },
+  { to: "/admin/seo", label: "SEO", icon: Search },
   { to: "/admin/settings", label: "Site Settings", icon: Settings },
   { to: "/admin/industries", label: "Industries", icon: Building2 },
   { to: "/admin/scope", label: "Scope of Work", icon: ListOrdered },
