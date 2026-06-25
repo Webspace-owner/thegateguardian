@@ -21,16 +21,20 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as SolutionsIndexRouteImport } from './routes/solutions.index'
 import { Route as AdminIndexRouteImport } from './routes/admin.index'
 import { Route as SolutionsSlugRouteImport } from './routes/solutions.$slug'
+import { Route as PSlugRouteImport } from './routes/p.$slug'
 import { Route as IndustriesSlugRouteImport } from './routes/industries.$slug'
 import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
 import { Route as AdminUsersRouteImport } from './routes/admin.users'
 import { Route as AdminTestimonialsRouteImport } from './routes/admin.testimonials'
 import { Route as AdminSubmissionsRouteImport } from './routes/admin.submissions'
 import { Route as AdminSettingsRouteImport } from './routes/admin.settings'
+import { Route as AdminSeoRouteImport } from './routes/admin.seo'
 import { Route as AdminScopeRouteImport } from './routes/admin.scope'
+import { Route as AdminPagesRouteImport } from './routes/admin.pages'
 import { Route as AdminIndustriesRouteImport } from './routes/admin.industries'
 import { Route as AdminGalleryRouteImport } from './routes/admin.gallery'
 import { Route as AdminBlogRouteImport } from './routes/admin.blog'
+import { Route as AdminPagesIdRouteImport } from './routes/admin.pages.$id'
 
 const ServicesRoute = ServicesRouteImport.update({
   id: '/services',
@@ -92,6 +96,11 @@ const SolutionsSlugRoute = SolutionsSlugRouteImport.update({
   path: '/solutions/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PSlugRoute = PSlugRouteImport.update({
+  id: '/p/$slug',
+  path: '/p/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndustriesSlugRoute = IndustriesSlugRouteImport.update({
   id: '/$slug',
   path: '/$slug',
@@ -122,9 +131,19 @@ const AdminSettingsRoute = AdminSettingsRouteImport.update({
   path: '/settings',
   getParentRoute: () => AdminRoute,
 } as any)
+const AdminSeoRoute = AdminSeoRouteImport.update({
+  id: '/seo',
+  path: '/seo',
+  getParentRoute: () => AdminRoute,
+} as any)
 const AdminScopeRoute = AdminScopeRouteImport.update({
   id: '/scope',
   path: '/scope',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminPagesRoute = AdminPagesRouteImport.update({
+  id: '/pages',
+  path: '/pages',
   getParentRoute: () => AdminRoute,
 } as any)
 const AdminIndustriesRoute = AdminIndustriesRouteImport.update({
@@ -142,6 +161,11 @@ const AdminBlogRoute = AdminBlogRouteImport.update({
   path: '/blog',
   getParentRoute: () => AdminRoute,
 } as any)
+const AdminPagesIdRoute = AdminPagesIdRouteImport.update({
+  id: '/$id',
+  path: '/$id',
+  getParentRoute: () => AdminPagesRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -156,16 +180,20 @@ export interface FileRoutesByFullPath {
   '/admin/blog': typeof AdminBlogRoute
   '/admin/gallery': typeof AdminGalleryRoute
   '/admin/industries': typeof AdminIndustriesRoute
+  '/admin/pages': typeof AdminPagesRouteWithChildren
   '/admin/scope': typeof AdminScopeRoute
+  '/admin/seo': typeof AdminSeoRoute
   '/admin/settings': typeof AdminSettingsRoute
   '/admin/submissions': typeof AdminSubmissionsRoute
   '/admin/testimonials': typeof AdminTestimonialsRoute
   '/admin/users': typeof AdminUsersRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/industries/$slug': typeof IndustriesSlugRoute
+  '/p/$slug': typeof PSlugRoute
   '/solutions/$slug': typeof SolutionsSlugRoute
   '/admin/': typeof AdminIndexRoute
   '/solutions/': typeof SolutionsIndexRoute
+  '/admin/pages/$id': typeof AdminPagesIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -179,16 +207,20 @@ export interface FileRoutesByTo {
   '/admin/blog': typeof AdminBlogRoute
   '/admin/gallery': typeof AdminGalleryRoute
   '/admin/industries': typeof AdminIndustriesRoute
+  '/admin/pages': typeof AdminPagesRouteWithChildren
   '/admin/scope': typeof AdminScopeRoute
+  '/admin/seo': typeof AdminSeoRoute
   '/admin/settings': typeof AdminSettingsRoute
   '/admin/submissions': typeof AdminSubmissionsRoute
   '/admin/testimonials': typeof AdminTestimonialsRoute
   '/admin/users': typeof AdminUsersRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/industries/$slug': typeof IndustriesSlugRoute
+  '/p/$slug': typeof PSlugRoute
   '/solutions/$slug': typeof SolutionsSlugRoute
   '/admin': typeof AdminIndexRoute
   '/solutions': typeof SolutionsIndexRoute
+  '/admin/pages/$id': typeof AdminPagesIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -204,16 +236,20 @@ export interface FileRoutesById {
   '/admin/blog': typeof AdminBlogRoute
   '/admin/gallery': typeof AdminGalleryRoute
   '/admin/industries': typeof AdminIndustriesRoute
+  '/admin/pages': typeof AdminPagesRouteWithChildren
   '/admin/scope': typeof AdminScopeRoute
+  '/admin/seo': typeof AdminSeoRoute
   '/admin/settings': typeof AdminSettingsRoute
   '/admin/submissions': typeof AdminSubmissionsRoute
   '/admin/testimonials': typeof AdminTestimonialsRoute
   '/admin/users': typeof AdminUsersRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/industries/$slug': typeof IndustriesSlugRoute
+  '/p/$slug': typeof PSlugRoute
   '/solutions/$slug': typeof SolutionsSlugRoute
   '/admin/': typeof AdminIndexRoute
   '/solutions/': typeof SolutionsIndexRoute
+  '/admin/pages/$id': typeof AdminPagesIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -230,16 +266,20 @@ export interface FileRouteTypes {
     | '/admin/blog'
     | '/admin/gallery'
     | '/admin/industries'
+    | '/admin/pages'
     | '/admin/scope'
+    | '/admin/seo'
     | '/admin/settings'
     | '/admin/submissions'
     | '/admin/testimonials'
     | '/admin/users'
     | '/blog/$slug'
     | '/industries/$slug'
+    | '/p/$slug'
     | '/solutions/$slug'
     | '/admin/'
     | '/solutions/'
+    | '/admin/pages/$id'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -253,16 +293,20 @@ export interface FileRouteTypes {
     | '/admin/blog'
     | '/admin/gallery'
     | '/admin/industries'
+    | '/admin/pages'
     | '/admin/scope'
+    | '/admin/seo'
     | '/admin/settings'
     | '/admin/submissions'
     | '/admin/testimonials'
     | '/admin/users'
     | '/blog/$slug'
     | '/industries/$slug'
+    | '/p/$slug'
     | '/solutions/$slug'
     | '/admin'
     | '/solutions'
+    | '/admin/pages/$id'
   id:
     | '__root__'
     | '/'
@@ -277,16 +321,20 @@ export interface FileRouteTypes {
     | '/admin/blog'
     | '/admin/gallery'
     | '/admin/industries'
+    | '/admin/pages'
     | '/admin/scope'
+    | '/admin/seo'
     | '/admin/settings'
     | '/admin/submissions'
     | '/admin/testimonials'
     | '/admin/users'
     | '/blog/$slug'
     | '/industries/$slug'
+    | '/p/$slug'
     | '/solutions/$slug'
     | '/admin/'
     | '/solutions/'
+    | '/admin/pages/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -299,6 +347,7 @@ export interface RootRouteChildren {
   GalleryRoute: typeof GalleryRoute
   IndustriesRoute: typeof IndustriesRouteWithChildren
   ServicesRoute: typeof ServicesRoute
+  PSlugRoute: typeof PSlugRoute
   SolutionsSlugRoute: typeof SolutionsSlugRoute
   SolutionsIndexRoute: typeof SolutionsIndexRoute
 }
@@ -389,6 +438,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SolutionsSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/p/$slug': {
+      id: '/p/$slug'
+      path: '/p/$slug'
+      fullPath: '/p/$slug'
+      preLoaderRoute: typeof PSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/industries/$slug': {
       id: '/industries/$slug'
       path: '/$slug'
@@ -431,11 +487,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminSettingsRouteImport
       parentRoute: typeof AdminRoute
     }
+    '/admin/seo': {
+      id: '/admin/seo'
+      path: '/seo'
+      fullPath: '/admin/seo'
+      preLoaderRoute: typeof AdminSeoRouteImport
+      parentRoute: typeof AdminRoute
+    }
     '/admin/scope': {
       id: '/admin/scope'
       path: '/scope'
       fullPath: '/admin/scope'
       preLoaderRoute: typeof AdminScopeRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/pages': {
+      id: '/admin/pages'
+      path: '/pages'
+      fullPath: '/admin/pages'
+      preLoaderRoute: typeof AdminPagesRouteImport
       parentRoute: typeof AdminRoute
     }
     '/admin/industries': {
@@ -459,14 +529,35 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminBlogRouteImport
       parentRoute: typeof AdminRoute
     }
+    '/admin/pages/$id': {
+      id: '/admin/pages/$id'
+      path: '/$id'
+      fullPath: '/admin/pages/$id'
+      preLoaderRoute: typeof AdminPagesIdRouteImport
+      parentRoute: typeof AdminPagesRoute
+    }
   }
 }
+
+interface AdminPagesRouteChildren {
+  AdminPagesIdRoute: typeof AdminPagesIdRoute
+}
+
+const AdminPagesRouteChildren: AdminPagesRouteChildren = {
+  AdminPagesIdRoute: AdminPagesIdRoute,
+}
+
+const AdminPagesRouteWithChildren = AdminPagesRoute._addFileChildren(
+  AdminPagesRouteChildren,
+)
 
 interface AdminRouteChildren {
   AdminBlogRoute: typeof AdminBlogRoute
   AdminGalleryRoute: typeof AdminGalleryRoute
   AdminIndustriesRoute: typeof AdminIndustriesRoute
+  AdminPagesRoute: typeof AdminPagesRouteWithChildren
   AdminScopeRoute: typeof AdminScopeRoute
+  AdminSeoRoute: typeof AdminSeoRoute
   AdminSettingsRoute: typeof AdminSettingsRoute
   AdminSubmissionsRoute: typeof AdminSubmissionsRoute
   AdminTestimonialsRoute: typeof AdminTestimonialsRoute
@@ -478,7 +569,9 @@ const AdminRouteChildren: AdminRouteChildren = {
   AdminBlogRoute: AdminBlogRoute,
   AdminGalleryRoute: AdminGalleryRoute,
   AdminIndustriesRoute: AdminIndustriesRoute,
+  AdminPagesRoute: AdminPagesRouteWithChildren,
   AdminScopeRoute: AdminScopeRoute,
+  AdminSeoRoute: AdminSeoRoute,
   AdminSettingsRoute: AdminSettingsRoute,
   AdminSubmissionsRoute: AdminSubmissionsRoute,
   AdminTestimonialsRoute: AdminTestimonialsRoute,
@@ -520,6 +613,7 @@ const rootRouteChildren: RootRouteChildren = {
   GalleryRoute: GalleryRoute,
   IndustriesRoute: IndustriesRouteWithChildren,
   ServicesRoute: ServicesRoute,
+  PSlugRoute: PSlugRoute,
   SolutionsSlugRoute: SolutionsSlugRoute,
   SolutionsIndexRoute: SolutionsIndexRoute,
 }
