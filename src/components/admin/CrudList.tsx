@@ -6,8 +6,9 @@ import { Input } from "@/components/ui/input";
 import { Card } from "@/components/ui/card";
 import { Trash2, Plus } from "lucide-react";
 import { toast } from "sonner";
+import { ImageUpload } from "@/components/admin/ImageUpload";
 
-type Field = { key: string; label: string; type?: "text" | "textarea" | "number" | "checkbox" };
+type Field = { key: string; label: string; type?: "text" | "textarea" | "number" | "checkbox" | "image" };
 
 export function CrudList({ table, title, fields, orderBy = "sort_order" }: { table: string; title: string; fields: Field[]; orderBy?: string }) {
   const { data, refetch } = useQuery({
@@ -38,6 +39,7 @@ export function CrudList({ table, title, fields, orderBy = "sort_order" }: { tab
     if (f.type === "textarea") return <textarea className="w-full p-2 rounded border bg-input text-sm" rows={3} value={value ?? ""} onChange={(e)=>onChange(e.target.value)} placeholder={f.label} />;
     if (f.type === "checkbox") return <label className="flex items-center gap-2 text-sm"><input type="checkbox" checked={!!value} onChange={(e)=>onChange(e.target.checked)} /> {f.label}</label>;
     if (f.type === "number") return <Input type="number" value={value ?? ""} onChange={(e)=>onChange(e.target.value === "" ? null : Number(e.target.value))} placeholder={f.label} />;
+    if (f.type === "image") return <ImageUpload label={f.label} value={value} onChange={onChange} />;
     return <Input value={value ?? ""} onChange={(e)=>onChange(e.target.value)} placeholder={f.label} />;
   };
 
