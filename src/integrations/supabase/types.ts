@@ -21,6 +21,9 @@ export type Database = {
           created_at: string
           excerpt: string | null
           id: string
+          meta_description: string | null
+          meta_title: string | null
+          og_image: string | null
           published: boolean
           published_at: string | null
           slug: string
@@ -33,6 +36,9 @@ export type Database = {
           created_at?: string
           excerpt?: string | null
           id?: string
+          meta_description?: string | null
+          meta_title?: string | null
+          og_image?: string | null
           published?: boolean
           published_at?: string | null
           slug: string
@@ -45,6 +51,9 @@ export type Database = {
           created_at?: string
           excerpt?: string | null
           id?: string
+          meta_description?: string | null
+          meta_title?: string | null
+          og_image?: string | null
           published?: boolean
           published_at?: string | null
           slug?: string
@@ -117,7 +126,10 @@ export type Database = {
           icon: string | null
           id: string
           image_url: string | null
+          meta_description: string | null
+          meta_title: string | null
           name: string
+          og_image: string | null
           overview: string | null
           services: string | null
           slug: string | null
@@ -131,7 +143,10 @@ export type Database = {
           icon?: string | null
           id?: string
           image_url?: string | null
+          meta_description?: string | null
+          meta_title?: string | null
           name: string
+          og_image?: string | null
           overview?: string | null
           services?: string | null
           slug?: string | null
@@ -145,13 +160,108 @@ export type Database = {
           icon?: string | null
           id?: string
           image_url?: string | null
+          meta_description?: string | null
+          meta_title?: string | null
           name?: string
+          og_image?: string | null
           overview?: string | null
           services?: string | null
           slug?: string | null
           solutions?: string | null
           sort_order?: number
           tagline?: string | null
+        }
+        Relationships: []
+      }
+      page_sections: {
+        Row: {
+          created_at: string
+          data: Json
+          id: string
+          page_id: string
+          sort_order: number
+          type: string
+          updated_at: string
+          visible: boolean
+        }
+        Insert: {
+          created_at?: string
+          data?: Json
+          id?: string
+          page_id: string
+          sort_order?: number
+          type: string
+          updated_at?: string
+          visible?: boolean
+        }
+        Update: {
+          created_at?: string
+          data?: Json
+          id?: string
+          page_id?: string
+          sort_order?: number
+          type?: string
+          updated_at?: string
+          visible?: boolean
+        }
+        Relationships: [
+          {
+            foreignKeyName: "page_sections_page_id_fkey"
+            columns: ["page_id"]
+            isOneToOne: false
+            referencedRelation: "pages"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      pages: {
+        Row: {
+          canonical_url: string | null
+          created_at: string
+          id: string
+          json_ld: Json | null
+          meta_description: string | null
+          meta_title: string | null
+          noindex: boolean
+          og_image: string | null
+          published: boolean
+          show_in_nav: boolean
+          slug: string
+          sort_order: number
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          canonical_url?: string | null
+          created_at?: string
+          id?: string
+          json_ld?: Json | null
+          meta_description?: string | null
+          meta_title?: string | null
+          noindex?: boolean
+          og_image?: string | null
+          published?: boolean
+          show_in_nav?: boolean
+          slug: string
+          sort_order?: number
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          canonical_url?: string | null
+          created_at?: string
+          id?: string
+          json_ld?: Json | null
+          meta_description?: string | null
+          meta_title?: string | null
+          noindex?: boolean
+          og_image?: string | null
+          published?: boolean
+          show_in_nav?: boolean
+          slug?: string
+          sort_order?: number
+          title?: string
+          updated_at?: string
         }
         Relationships: []
       }
@@ -197,6 +307,51 @@ export type Database = {
           id?: string
           sort_order?: number
           title?: string
+        }
+        Relationships: []
+      }
+      seo_settings: {
+        Row: {
+          canonical_base_url: string
+          default_meta_description: string
+          default_meta_title: string
+          default_og_image: string | null
+          google_analytics_id: string | null
+          google_site_verification: string | null
+          id: number
+          org_jsonld: Json
+          robots_txt: string
+          twitter_card: string
+          twitter_handle: string | null
+          updated_at: string
+        }
+        Insert: {
+          canonical_base_url?: string
+          default_meta_description?: string
+          default_meta_title?: string
+          default_og_image?: string | null
+          google_analytics_id?: string | null
+          google_site_verification?: string | null
+          id?: number
+          org_jsonld?: Json
+          robots_txt?: string
+          twitter_card?: string
+          twitter_handle?: string | null
+          updated_at?: string
+        }
+        Update: {
+          canonical_base_url?: string
+          default_meta_description?: string
+          default_meta_title?: string
+          default_og_image?: string | null
+          google_analytics_id?: string | null
+          google_site_verification?: string | null
+          id?: number
+          org_jsonld?: Json
+          robots_txt?: string
+          twitter_card?: string
+          twitter_handle?: string | null
+          updated_at?: string
         }
         Relationships: []
       }
