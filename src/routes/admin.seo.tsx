@@ -9,7 +9,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ImageUpload } from "@/components/admin/ImageUpload";
-import { Save, ExternalLink } from "lucide-react";
+import { Save } from "lucide-react";
 import { toast } from "sonner";
 
 export const Route = createFileRoute("/admin/seo")({ component: SeoAdmin });
