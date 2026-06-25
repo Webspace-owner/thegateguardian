@@ -31,12 +31,9 @@ function SeoAdmin() {
 
   return (
     <div className="max-w-3xl space-y-4">
-      <div className="flex items-center justify-between">
+      <div>
         <h1 className="text-3xl font-bold">SEO</h1>
-        <div className="flex gap-2">
-          <Button size="sm" variant="outline" asChild><a href="/sitemap.xml" target="_blank" rel="noopener"><ExternalLink className="h-4 w-4 mr-1" />sitemap.xml</a></Button>
-          <Button size="sm" variant="outline" asChild><a href="/robots.txt" target="_blank" rel="noopener"><ExternalLink className="h-4 w-4 mr-1" />robots.txt</a></Button>
-        </div>
+        <p className="text-sm text-muted-foreground">Sitewide meta, social, structured data and crawler controls.</p>
       </div>
 
       <Tabs defaultValue="meta">
